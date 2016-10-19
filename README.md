@@ -7,6 +7,10 @@ convert it into an L.polygon and then add it to the featureGroup that the Leafle
 The Leaflet.DriveTime.js plugin depends on turf.js (https://api.mapbox.com/mapbox.js/plugins/turf/v2.0.2/turf.min.js) and underscore.js (http://underscorejs.org/underscore-min.js)
 
 ### Usage
+Add reference to the `turf.js` and `underscore-min.js` script files from the above CDNs in your page.
+
+Then add reference to the `Leaflet.DriveTime.js` (no CDN for now, apologies for that! so please bear with me and just download the source file onto your machine and add reference from there. I will sort out the CDN in the coming weeks.)
+
 The plugin exposes a `DriveTime` object that can be used as shown below:
 
 `DriveTime.GetDriveTimePolygon(eventInvoker.latlng, driveTimeInMinutes, function (driveTimePolygonGeoJSON) 
