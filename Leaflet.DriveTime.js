@@ -1,11 +1,11 @@
-﻿var requestsPending = 0;
-var DriveTime = {
+﻿var DriveTime = {
     GetDriveTimePolygon: function (origin, driveTimeInMinutes, callback) {
         GetDriveTimePolygon(origin, driveTimeInMinutes, callback);
     }
 };
 
 function GetDriveTimePolygon(origin, driveTimeInMinutes, callback) {
+    var requestsPending = 0;
     var driveTimeInHours = driveTimeInMinutes / 60;
     var driveTimeInSeconds = driveTimeInMinutes * 60;
     var driveTimeTolerance = 0.1 * driveTimeInSeconds;
@@ -53,7 +53,7 @@ function GetDriveTimePolygon(origin, driveTimeInMinutes, callback) {
             }                      
 
             --requestsPending;
-            GenerateDriveTimePolygon(driveTimePoints, callback);
+            GenerateDriveTimePolygon(driveTimePoints, requestsPending, callback);
         });        
     }
 }
@@ -125,7 +125,7 @@ function CalculatePointWithinTargetDriveTime(closestPointPriorToTarget, closestP
     return calculatedPoint;
 }
 
-function GenerateDriveTimePolygon(driveTimePoints, callback) {
+function GenerateDriveTimePolygon(driveTimePoints, requestsPending, callback) {
     if (requestsPending == 0) {
         var featureCollection = turf.featurecollection(driveTimePoints);
         var driveTimePolygonGeoJSON = turf.concave(featureCollection, 100, 'miles');
