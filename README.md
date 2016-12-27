@@ -19,7 +19,7 @@ Include reference to the following dependencies first:
 
     `<script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>`
     `<link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />`
-4. Leaflet.js.
+4. Leaflet.js (if you are using Leaflet.js alone with third party tile layers).
 
 Then add reference to the `Leaflet.DriveTime.js` (no CDN for now, apologies for that! so please bear with me and just download the source file onto your machine and add reference from there. I will sort out the CDN in the coming weeks.)
 
