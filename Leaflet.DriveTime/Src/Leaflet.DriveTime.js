@@ -1,7 +1,7 @@
 ﻿var DriveTime = (function () {
     var requestsPending = 0;
 
-    var _GetDriveTimePolygon = function (origin, driveTimeInMinutes, callback) {
+    var _GetDriveTimePolygon = function (origin, driveTimeInMinutes, mapboxAccessToken, callback) {
         var driveTimeInHours = driveTimeInMinutes / 60;
         var driveTimeInSeconds = driveTimeInMinutes * 60;
         var driveTimeTolerance = 0.1 * driveTimeInSeconds;
@@ -32,7 +32,7 @@
             radialDestinationPoints.push(destinationPoint);
 
             $.ajax({
-                url: 'https://api.mapbox.com/directions/v5/mapbox/driving/' + originPointString + ";" + intermediatePoint1String + ";" + intermediatePoint2String + ";" + destinationPointString + '?steps=true&access_token=' + L.mapbox.accessToken,
+                url: 'https://api.mapbox.com/directions/v5/mapbox/driving/' + originPointString + ";" + intermediatePoint1String + ";" + intermediatePoint2String + ";" + destinationPointString + '?steps=true&access_token=' + mapboxAccessToken,
                 method: 'GET'
             }).done(function (result) {
                 var routePoints = TryLocateRoutePointsWithinDriveTime(result, originPoint, destinationPoint, driveTimeInSeconds, driveTimeTolerance);
