@@ -24,14 +24,16 @@ Include reference to the following dependencies first:
 Then add reference to the `Leaflet.DriveTime.js` (no CDN for now, apologies for that! so please bear with me and just download the source file onto your machine and add reference from there. I will sort out the CDN in the coming weeks.)
 
 ### Usage
-The plugin exposes a `DriveTime` object that can be used as shown below:
+The plugin exposes a `DriveTime` object and the `GetDriveTimePolygon` function takes the origin lat/long, drive time in minutes, Mapbox API access token as input parameters and a callback that should be run when the polygon is ready, as shown below:
 
-`DriveTime.GetDriveTimePolygon(eventInvoker.latlng, driveTimeInMinutes, function (driveTimePolygonGeoJSON) 
+`DriveTime.GetDriveTimePolygon(eventInvoker.latlng, driveTimeInMinutes, mapboxAccessToken, function (driveTimePolygonGeoJSON) 
 {`                
     `L.mapbox.featureLayer().setGeoJSON(driveTimePolygonGeoJSON).addTo(mapBoxMap);                    `                
 `});`
 
-For e.g. I can click on a Mapbox map (which uses Leaflet map internally) to establish the origin point and read the drive time input from a text field on the page like so:
+You are going to need the Mapbox API access token to access their RESTful Directions API.
+
+In this example, I have clicked on the Mapbox map (which uses Leaflet map internally) to establish the origin point and read the drive time input from a text field on the page like so:
 
 `$(document).ready(function () {`
         `L.mapbox.accessToken = 'Your own API key';`
@@ -41,7 +43,7 @@ For e.g. I can click on a Mapbox map (which uses Leaflet map internally) to esta
             `var driveTimeInMinutes = parseInt($("#driveTime").val());`
 
             `if (driveTimeInMinutes > 0) {                `
-                `DriveTime.GetDriveTimePolygon(eventInvoker.latlng, driveTimeInMinutes, function (driveTimePolygonGeoJSON) {`
+                `DriveTime.GetDriveTimePolygon(eventInvoker.latlng, driveTimeInMinutes, L.mapbox.accessToken, function (driveTimePolygonGeoJSON) {`
                     `L.mapbox.featureLayer().setGeoJSON(driveTimePolygonGeoJSON).addTo(mapBoxMap);                    `
                 `});`
             `}`
