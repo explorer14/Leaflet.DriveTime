@@ -38,18 +38,16 @@ In this example, I have clicked on the Mapbox map (which uses Leaflet map intern
 `$(document).ready(function () {`
         `L.mapbox.accessToken = 'Your own API key';`
         `mapBoxMap = L.mapbox.map('map', 'mapbox.streets', { preferCanvas: true });`
-
         `mapBoxMap.on('click', function (eventInvoker) {`
             `var driveTimeInMinutes = parseInt($("#driveTime").val());`
 
-            `if (driveTimeInMinutes > 0) {                `
+            `if (driveTimeInMinutes > 0) {`
                 `DriveTime.GetDriveTimePolygon(eventInvoker.latlng, driveTimeInMinutes, L.mapbox.accessToken, function (driveTimePolygonGeoJSON) {`
-                    `L.mapbox.featureLayer().setGeoJSON(driveTimePolygonGeoJSON).addTo(mapBoxMap);                    `
+                    `L.mapbox.featureLayer().setGeoJSON(driveTimePolygonGeoJSON).addTo(mapBoxMap);`
                 `});`
             `}`
         `});`
     `});`
-
 `<input id="driveTime" type="text" style="margin-top:8px" placeholder="Drive Time in minutes..." />`
 `<div id="map" style="height:100%; position: relative;"></div>`
 
