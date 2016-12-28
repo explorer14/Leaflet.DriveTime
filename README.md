@@ -1,4 +1,6 @@
 # Leaflet.DriveTime (work in progress)
+NB:  Please the Leaflet.DriveTime folder if you want to see a reference usage of the plugin. I still need to figure out how to delete the Leaflet.DriveTime2 folder from Github.
+
 A quick and simple plugin for generating drive time polygons using Mapbox Directions API. Click on the map on a location that you want to
 use as the origin, pass in the drive time in minutes and this plugin will give you a polygon GeoJSON that encapsulates the area that can
 be reached from the selected origin within the drive time. You can either add the GeoJSON directly to a Leaflet map using a featureLayer or 
@@ -26,29 +28,34 @@ Then add reference to the `Leaflet.DriveTime.js` (no CDN for now, apologies for 
 ### Usage
 The plugin exposes a `DriveTime` object and the `GetDriveTimePolygon` function takes the origin lat/long, drive time in minutes, Mapbox API access token as input parameters and a callback that should be run when the polygon is ready, as shown below:
 
-`DriveTime.GetDriveTimePolygon(eventInvoker.latlng, driveTimeInMinutes, mapboxAccessToken, function (driveTimePolygonGeoJSON) 
-{`                
-    `L.mapbox.featureLayer().setGeoJSON(driveTimePolygonGeoJSON).addTo(mapBoxMap);                    `                
+`DriveTime.GetDriveTimePolygon(eventInvoker.latlng,` 
+                               `driveTimeInMinutes,` 
+                               `mapboxAccessToken,` 
+                               `function (driveTimePolygonGeoJSON){`                
+    `L.mapbox.featureLayer().setGeoJSON(driveTimePolygonGeoJSON).addTo(mapBoxMap);`                
 `});`
 
 You are going to need the Mapbox API access token to access their RESTful Directions API.
 
 In this example, I have clicked on the Mapbox map (which uses Leaflet map internally) to establish the origin point and read the drive time input from a text field on the page like so:
 
-`$(document).ready(function () {`
-        `L.mapbox.accessToken = 'Your own API key';`
-        `mapBoxMap = L.mapbox.map('map', 'mapbox.streets', { preferCanvas: true });`
-        `mapBoxMap.on('click', function (eventInvoker) {`
-            `var driveTimeInMinutes = parseInt($("#driveTime").val());`
 
-            `if (driveTimeInMinutes > 0) {`
-                `DriveTime.GetDriveTimePolygon(eventInvoker.latlng, driveTimeInMinutes, L.mapbox.accessToken, function (driveTimePolygonGeoJSON) {`
-                    `L.mapbox.featureLayer().setGeoJSON(driveTimePolygonGeoJSON).addTo(mapBoxMap);`
-                `});`
-            `}`
-        `});`
-    `});`
-`<input id="driveTime" type="text" style="margin-top:8px" placeholder="Drive Time in minutes..." />`
+$(document).ready(function () {
+        L.mapbox.accessToken = 'pk.eyJ1IjoiZXhwbG9yZXIxNCIsImEiOiJjaW5hdWt0M3EwMDJmd3pseWUxOGo1cDkzIn0.qVx6nR3jaCs9a62sT1mQSA';
+        mapBoxMap = L.mapbox.map('map', 'mapbox.streets', { preferCanvas: true });
+
+        mapBoxMap.on('click', function (eventInvoker) {
+            var driveTimeInMinutes = parseInt($("#driveTime").val());
+
+            if (driveTimeInMinutes > 0) {
+                DriveTime.GetDriveTimePolygon(eventInvoker.latlng, driveTimeInMinutes, function (driveTimePolygonGeoJSON) {
+                    L.mapbox.featureLayer().setGeoJSON(driveTimePolygonGeoJSON).addTo(mapBoxMap);
+                });
+            }
+        });        
+    });
+
+`<input id="driveTime" type="text" style="margin-top:8px" placeholder="Drive Time in minutes..." />`  
 `<div id="map" style="height:100%; position: relative;"></div>`
 
 ### Browser compatibility
