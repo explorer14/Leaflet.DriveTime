@@ -1,5 +1,5 @@
 # Leaflet.DriveTime (work in progress)
-NB:  Please the Leaflet.DriveTime folder if you want to see a reference usage of the plugin. I still need to figure out how to delete the Leaflet.DriveTime2 folder from Github.
+### NB:  Please use the Leaflet.DriveTime folder if you want to see a reference usage of the plugin. I still need to figure out how to delete the Leaflet.DriveTime2 folder from Github.
 
 A quick and simple plugin for generating drive time polygons using Mapbox Directions API. Click on the map on a location that you want to
 use as the origin, pass in the drive time in minutes and this plugin will give you a polygon GeoJSON that encapsulates the area that can
