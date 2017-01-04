@@ -1,10 +1,9 @@
 # Leaflet.DriveTime (work in progress)
 ### NB:  Please use the Leaflet.DriveTime folder if you want to see a reference usage of the plugin. I still need to figure out how to delete the Leaflet.DriveTime2 folder from Github.
 
-A quick and simple plugin for generating drive time polygons using Mapbox Directions API. Click on the map on a location that you want to
-use as the origin, pass in the drive time in minutes and this plugin will give you a polygon GeoJSON that encapsulates the area that can
-be reached from the selected origin within the drive time. You can either add the GeoJSON directly to a Leaflet map using a featureLayer or 
-convert it into an L.polygon and then add it to the featureGroup that the Leaflet.Draw plugin uses to draw shapes on map.
+A simple JavaScript module for generating drive time polygons using Mapbox Directions API. 
+
+Click on the map on a location that you want to use as the origin, pass in the drive time in minutes and this module will give you a polygon GeoJSON that encapsulates the area that can be reached from the selected origin within the drive time. You can either add the GeoJSON directly to a Leaflet map using a featureLayer or convert it into an L.polygon and then add it to the featureGroup that the Leaflet.Draw plugin uses to draw shapes on map.
 
 ### External Dependencies
 The Leaflet.DriveTime.js plugin depends on turf.js (https://api.mapbox.com/mapbox.js/plugins/turf/v2.0.2/turf.min.js) and underscore.js (http://underscorejs.org/underscore-min.js)
@@ -26,7 +25,7 @@ Include reference to the following dependencies first:
 Then add reference to the `Leaflet.DriveTime.js` (no CDN for now, apologies for that! so please bear with me and just download the source file onto your machine and add reference from there. I will sort out the CDN in the coming weeks.)
 
 ### Usage
-The plugin exposes a `DriveTime` object and the `GetDriveTimePolygon` function takes the origin lat/long, drive time in minutes, Mapbox API access token as input parameters and a callback that should be run when the polygon is ready, as shown below:
+The module exposes a `DriveTime` object and the `GetDriveTimePolygon` function takes the origin lat/long, drive time in minutes, Mapbox API access token as input parameters and a callback that should be run when the polygon is ready, as shown below:
 
 `DriveTime.GetDriveTimePolygon(eventInvoker.latlng,` 
                                `driveTimeInMinutes,` 
