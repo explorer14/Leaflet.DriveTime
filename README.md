@@ -61,4 +61,4 @@ $(document).ready(function () {
 Tested in Chrome 55, IE 11 (minimum IE10), Firefox 48 successfully.
 
 ### License
-<a href="https://opensource.org/licenses/BSD-2-Clause">BSD-2-Clause</a>
+https://opensource.org/licenses/BSD-2-Clause
