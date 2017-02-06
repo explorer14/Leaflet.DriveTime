@@ -10,7 +10,6 @@
         var radialDestinationPoints = [];
         var driveTimePoints = [];
 
-        //var sourceMarker = L.marker(origin).addTo(mapBoxMap);
         var originPointString = origin.lng + ',' + origin.lat;
         // get all the points on the circumference of a circle with radius = targetDistanceInMiles (line of sight distance)
         var originPoint = turf.point([origin.lng, origin.lat]);
