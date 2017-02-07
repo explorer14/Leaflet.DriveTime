@@ -3,11 +3,14 @@
     ViewBag.Title = "Index";
 }
 
-<script src="~/Src/Leaflet.DriveTime.js"></script>
+@*<script src="~/Src/Leaflet.DriveTime.js"></script>*@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        //L.mapbox.accessToken = 'pk.eyJ1IjoiZXhwbG9yZXIxNCIsImEiOiJjaW5hdWt0M3EwMDJmd3pseWUxOGo1cDkzIn0.qVx6nR3jaCs9a62sT1mQSA';
+        var LMap = L.map('map').setView([51.505, -0.09], 13);        
+
+        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(LMap);
+        //L.mapbox.accessToken = mapboxAccessToken;
         //mapBoxMap = L.mapbox.map('map', 'mapbox.streets', { preferCanvas: true });
 
         //mapBoxMap.on('click', function (eventInvoker) {
@@ -18,21 +21,18 @@
         //            L.mapbox.featureLayer().setGeoJSON(driveTimePolygonGeoJSON).addTo(mapBoxMap);
         //        });
         //    }
-        //});
+        //});        
 
-        var LMap = L.map('map').setView([51.505, -0.09], 13);
-        var mapboxAccessToken = 'pk.eyJ1IjoiZXhwbG9yZXIxNCIsImEiOiJjaW5hdWt0M3EwMDJmd3pseWUxOGo1cDkzIn0.qVx6nR3jaCs9a62sT1mQSA';
+        require(["../Src/Leaflet.DriveTime"], function (driveTime) {
+            LMap.on('click', function (eventInvoker) {
+                var driveTimeInMinutes = 5;//parseInt($("#driveTime").val());
 
-        L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(LMap);        
-
-        LMap.on('click', function (eventInvoker) {
-            var driveTimeInMinutes = 5;//parseInt($("#driveTime").val());
-
-            if (driveTimeInMinutes > 0) {
-                DriveTime.GetDriveTimePolygon(eventInvoker.latlng, driveTimeInMinutes, mapboxAccessToken, function (driveTimePolygonGeoJSON) {
-                    L.geoJSON(driveTimePolygonGeoJSON).addTo(LMap);
-                });
-            }
+                if (driveTimeInMinutes > 0) {
+                    driveTime.GetDriveTimePolygon(eventInvoker.latlng, driveTimeInMinutes, mapboxAccessToken, function (driveTimePolygonGeoJSON) {
+                        L.geoJSON(driveTimePolygonGeoJSON).addTo(LMap);
+                    });
+                }
+            });
         });
     });
 </script>
