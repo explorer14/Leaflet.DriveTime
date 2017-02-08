@@ -1,9 +1,11 @@
-# Leaflet.DriveTime (work in progress)
-### NB:  Please use the Leaflet.DriveTime folder if you want to see a reference usage of the module. I still need to figure out how to delete the Leaflet.DriveTime2 folder from Github.
+# Leaflet.DriveTime
+A simple JavaScript module for generating drive time polygons using Mapbox Directions API. 
 
-A simple JavaScript module for generating drive time polygons using Mapbox Directions API. Checkout the demo <a href="http://drivetimedemo.us-west-2.elasticbeanstalk.com/">here</a>. Just click on the map anywhere!
+### Demo
+Checkout the demo <a href="http://drivetimedemo.us-west-2.elasticbeanstalk.com/">here</a>. Just click on the map anywhere!
 
-Click on the map on a location that you want to use as the origin, pass in the drive time in minutes and this module will give you a polygon GeoJSON that encapsulates the area that can be reached from the selected origin within the drive time. You can either add the GeoJSON directly to a Leaflet map using a featureLayer or convert it into an L.polygon and then add it to the featureGroup that the Leaflet.Draw plugin uses to draw shapes on map.
+### Concept
+This module will give you a polygon GeoJSON that roughly encapsulates the area that can be reached from the selected origin (i.e. clicking on the map at a location) within a certain amount of driving time in minutes. You can either add the resulting GeoJSON directly to a Leaflet map using a featureLayer or convert it into an L.polygon and then add it to the featureGroup that the Leaflet.Draw plugin uses to draw shapes on map. This could be quite a handy tool for making geo-fencing location queries where you want to identify the locations within a certain area. 
 
 ### External Dependencies
 The Leaflet.DriveTime.js module depends on <a href="https://api.mapbox.com/mapbox.js/plugins/turf/v2.0.2/turf.min.js">turf.js</a> and <a href="http://underscorejs.org/underscore-min.js">underscore.js</a> and it loads these dynamically from their respective CDNs using Asynchronous Module Definition (AMD) using Require.js. So no need to add these dependencies manually.
@@ -11,7 +13,6 @@ The Leaflet.DriveTime.js module depends on <a href="https://api.mapbox.com/mapbo
 This module was built against v2.4 of the Mapbox API which uses v0.7 of the Leaflet library so that's the minimum version of Leaflet map you would need.
 
 ### How to get a Leaflet map?
-
 You can get a Leaflet map in one of the 2 following ways:
 
 1. Use Mapbox JS API (if you are using Mapbox map, this will also automatically load the right version of leaflet.js)
@@ -24,7 +25,6 @@ You can get a Leaflet map in one of the 2 following ways:
 2. Use Leaflet.js directly with third party tile layers. The sample usage code shows both approaches.
 
 ### How to use/reference the module?
-
 One of the ways I load Leaflet.DriveTime is using Require.js' require() function in my main page like so:
 
 `$(document).ready(function () {`
