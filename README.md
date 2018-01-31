@@ -2,7 +2,7 @@
 A simple JavaScript module for generating drive time polygons using Mapbox Directions API. 
 
 ### Demo
-Checkout the demo <a href="http://drivetimedemo.us-west-2.elasticbeanstalk.com/">here</a>. Just click on the map anywhere!
+Checkout the demo <a href="http://leafletdrivetimedemo.azurewebsites.net//">here</a>. Just click on the map anywhere!
 
 ### Concept
 This module will give you a polygon GeoJSON that roughly encapsulates the area that can be reached from the selected origin (i.e. clicking on the map at a location) within a certain amount of driving time in minutes. You can either add the resulting GeoJSON directly to a Leaflet map using a featureLayer or convert it into an L.polygon and then add it to the featureGroup that the Leaflet.Draw plugin uses to draw shapes on map. This could be quite a handy tool for making geo-fencing location queries where you want to identify the locations within a certain area. 
