@@ -245,3 +245,4 @@ ModelManifest.xml
 # FAKE - F# Make
 .fake/
 /Leaflet.DriveTime/Scripts/Config
+/Leaflet.DriveTime/Properties/PublishProfiles/LeafletDriveTimeDemo - Web Deploy.pubxml
