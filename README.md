@@ -26,28 +26,30 @@ You can get a Leaflet map in one of the 2 following ways:
 
 ### How to use/reference the module?
 One of the ways I load Leaflet.DriveTime is using Require.js' require() function in my main page like so:
-
-`$(document).ready(function () {`
-	`// This module uses Mapbox's Directions API to generate a drive time polygon so its going to need an accessToken which is easy to generate. You can` 
-	`// simply create a free account and get a token from mapbox.com.`
-	`var mapboxAccessToken = <set your own Mapbox access token>`
-	`var LMap = L.map('map').setView([51.505, -0.09], 13);`      
-    `L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(LMap);`
+```
+$(document).ready(function () {
+	// This module uses Mapbox's Directions API to generate 
+	// a drive time polygon so its going to need an accessToken which is easy to generate. 
+	// You can simply create a free account and get a token from mapbox.com.
+	var mapboxAccessToken = <set your own Mapbox access token>
+	var LMap = L.map('map').setView([51.505, -0.09], 13);
+    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(LMap);
 	
-	`require(["../Src/Leaflet.DriveTime"], function (driveTime) {`
-        `LMap.on('click', function (eventInvoker) {`
-            `var driveTimeInMinutes = 5;`
+	require(["../Src/Leaflet.DriveTime"], function (driveTime) {
+        LMap.on('click', function (eventInvoker) {
+            var driveTimeInMinutes = 5;
         
-            `if (driveTimeInMinutes > 0) {`
-                `driveTime.GetDriveTimePolygon(eventInvoker.latlng, driveTimeInMinutes, mapboxAccessToken, function (driveTimePolygonGeoJSON) {`
-                    `L.geoJSON(driveTimePolygonGeoJSON).addTo(LMap);`
-                `});`
-            `}`
-        `});`
-    `});`
-`});`
+            if (driveTimeInMinutes > 0) {
+                driveTime.GetDriveTimePolygon(eventInvoker.latlng, driveTimeInMinutes, mapboxAccessToken, function (driveTimePolygonGeoJSON) {
+                    L.geoJSON(driveTimePolygonGeoJSON).addTo(LMap);
+                });
+            }
+        });
+    });
+});
 
-`<div id="map" style="height:100%; position: relative;"></div>`
+<div id="map" style="height:100%; position: relative;"></div>
+```
 
 ### Browser compatibility
 Tested in Chrome 55, IE 11 (minimum IE10), Firefox 48 successfully.
